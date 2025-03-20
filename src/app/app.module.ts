@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withJsonpSupport } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -84,15 +84,13 @@ const appRoutes: Routes = [
     }
 ];
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [
+        AppComponent
+    ], imports: [BrowserModule,
         BrowserAnimationsModule,
-        HttpClientModule,
-        HttpClientJsonpModule,
         RouterModule.forRoot(appRoutes),
         // Noctua Main and Shared modules
         NoctuaModule.forRoot(noctuaConfig),
@@ -102,26 +100,19 @@ const appRoutes: Routes = [
         MatSidenavModule,
         NoctuaProgressBarModule,
         TreeModule,
-
         //Material 
         MatSidenavModule,
-
         //Noctua App 
-        AppsModule
-    ],
-    providers: [
+        AppsModule], providers: [
         StartupService,
         {
             provide: APP_INITIALIZER,
             useFactory: startup,
             deps: [StartupService, NoctuaDataService],
             multi: true
-        }
-    ],
-    bootstrap: [
-        AppComponent
-    ]
-})
+        },
+        provideHttpClient(withInterceptorsFromDi(), withJsonpSupport())
+    ] })
 
 export class AppModule {
     constructor(library: FaIconLibrary) {
