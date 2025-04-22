@@ -105,13 +105,35 @@ export class CamGraphService {
   }
 
   createActivity(element: joint.shapes.noctua.NodeCellList, x: number, y: number) {
-    const self = this;
-    const node = element.get('node') as StencilItemNode;
+    console.log(this._noctuaUserService.user?.group, 'groups', this.cam.groups)
 
-    self.placeholderElement.position(x, y);
-    self._activityFormService.setActivityType(node.type)
-    self._activityFormService.activity.validateEvidence = false;
-    self._noctuaFormDialogService.openCreateActivityDialog(FormType.ACTIVITY);
+    const isGroupMember = this.cam.groups.some((group) => {
+      return this._noctuaUserService.user.groups?.includes(group);
+
+    });
+
+    const success = () => {
+      const self = this;
+      const node = element.get('node') as StencilItemNode;
+
+      self.placeholderElement.position(x, y);
+      self._activityFormService.setActivityType(node.type)
+      self._activityFormService.activity.validateEvidence = false;
+      self._noctuaFormDialogService.openCreateActivityDialog(FormType.ACTIVITY);
+    };
+
+    if (true) {
+      this.confirmDialogService.openConfirmDialog('Confirm?',
+        'You are not in group.',
+        success);
+    } else {
+      success()
+
+    }
+
+
+
+
   }
 
   createActivityConnector(

@@ -39,13 +39,14 @@ const EDGE_KEY_DELIM = '\x01';
 
 export class DagreNodesOnlyLayout implements Layout {
     defaultSettings: DagreNodesOnlySettings = {
-        orientation: Orientation.LEFT_TO_RIGHT,
-        marginX: 20,
-        marginY: 20,
-        edgePadding: 100,
-        rankPadding: 100,
-        nodePadding: 50,
-        curveDistance: 20,
+        orientation: Orientation.LEFT_TO_RIGHT, // Try this if your tree is deep
+        marginX: 10,
+        marginY: 10,
+        edgePadding: 20,
+        rankPadding: 20,
+        nodePadding: 20,
+        curveDistance: 10,
+        ranker: 'network-simplex',
         multigraph: false,
         compound: true
     };

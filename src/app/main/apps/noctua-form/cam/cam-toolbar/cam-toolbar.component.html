@@ -45,7 +45,7 @@
 
   <div class="noc-br noc-bl px-4">
     <button mat-button class="noc-toolbar-button noc-rounded-button" (click)="openCamForm()"
-      matTooltip="{{cam?.comment}}" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1000">
+      matTooltip="{{cam?.comments}}" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1000">
       <fa-icon [icon]="['fas', 'comment']"></fa-icon>
       <div class="noc-comments-badge">
         {{cam?.comments.length}}

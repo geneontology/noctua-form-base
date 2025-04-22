@@ -133,7 +133,7 @@ export class NoctuaDataService {
     if (index && index > 0) {
       return MatColors.getColor(colors[index])[100];
     } else {
-      return '##bbc9cc';
+      return '#bbc9cc';
     }
   }
 }

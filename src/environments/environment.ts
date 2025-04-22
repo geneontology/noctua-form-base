@@ -47,7 +47,7 @@ export const environment = {
   production: false,
   isDev: true,
   isBeta: false,
-  isGraph: false,
+  isGraph: true,
   globalGolrNeoServer: golrNeoServer,
   globalGolrServer: golrServer,
   globalMinervaDefinitionName: minervaDefinitionName,

@@ -39,6 +39,7 @@ $accent: map-get($theme, accent);
     color: #000;
 
     .noc-node-expander-button {
+      padding: 2px;
       @include deep-width(20px);
       @include deep-height(20px);
       line-height: 14px;
